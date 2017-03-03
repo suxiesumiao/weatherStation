@@ -1,0 +1,180 @@
+@charset "utf-8";
+*{
+	box-sizing: border-box; 
+	margin: 0;
+}
+
+body{
+	font-family: 'Microsoft Yahei',sans-serif;
+	color: #233;	
+}
+
+h3{
+	font: 600 24px/1.4 "Oswald",Arial,sans-serif;
+	font-family: 'Oswald',sans-serif!important;
+}
+
+.container{
+	display: flex;
+	min-height: 600px;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-content: space-around;
+}
+.form{
+	display: flex;
+	width: 100%;
+	justify-content: center;
+	height: 38px;
+}
+
+main{
+	width: 38%;
+}
+
+.search{
+	width: 300px;
+	border-radius: 4px;
+	outline: none;
+	font-size: 16px;
+	color: #233;
+	text-indent: 1em;
+	text-align: center;
+	margin-right: 4px;
+	border: 1px solid rgb(210, 108, 34);
+}
+
+.search:focus{
+	box-shadow: 0 0 3px lightseagreen;
+}
+
+.button{
+	background-color:rgb(210, 108, 34);
+	border-radius: 4px;
+	outline: none;
+	color: #fff;
+	border: none;
+}
+
+.button:hover{
+	background-color: rgb(190, 108, 34);
+}
+
+.weather_main,
+.time{
+	margin: 10px 0;
+}
+
+.wrapper{
+	height: 50px;
+}
+
+.temp{
+	vertical-align: top;
+	font-size: 30px;
+}
+
+.table{
+	width: 100%;
+	display: table;
+}
+
+table{
+	border-collapse: collapse;
+	width: 100%;
+}
+
+tr{
+	width: 100%;
+}
+
+tr td:first-child{
+	width: 100px;
+}
+
+tr:nth-child(odd){
+	background-color: rgb(240,240,240);
+}
+
+td{
+	text-align: center;
+	vertical-align: middle;
+	height: 30px;
+	color: #233;
+	font-size: 90%;
+}
+
+.wrong{
+	color: #D26C22;
+}
+
+.wrong{
+	text-decoration: none;
+}
+
+.pro{
+	width: 50%;
+	height: 430px;
+	border: 1px solid #999;
+}
+.pro .wrapper{
+	overflow-x: hidden;
+	height: 390px; 
+}
+.pro > ul{
+	display: flex;
+	padding: 0;
+}
+.pro > ul > li{
+	display: inline-block;
+	text-align: center;
+	width: 100px;
+	padding: 5px 0;
+	list-style-type: none;
+}
+.pro > ul > li:hover{
+	cursor: pointer;
+}
+.pro table {
+	border: 1;
+}
+
+/* 每3小时 预报 温度高亮 */
+.lightHightHour{
+	min-width: 50px;
+	padding: 0 10px;
+	display: inline-block;
+	font-weight: 600;
+	border-radius: 20px;
+	background: rgb(153,153,153);
+	color: white;
+}
+.ightHightHourMainHot{
+	min-width: 50px;
+	padding: 0 10px;
+	display: inline-block;
+	font-weight: 600;
+	border-radius: 4px;
+	background: tomato;
+	color: white;
+}
+
+.ightHightHourMainCold{
+	min-width: 50px;
+	padding: 0 10px;
+	display: inline-block;
+	font-weight: 600;
+	border-radius: 4px;
+	background: rgb(153,153,153);
+	color: white;
+}
+.proHourlyDate{
+	height: 30px;
+	text-align: left;
+	background: rgb(153,153,153);
+}
+@media screen and (max-width:1000px){
+	main , .pro{
+		width: 80%;
+	}
+}

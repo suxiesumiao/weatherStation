@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Document</title>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body>
+    <div id="weatherStation" @ceated='resolu' class="container">
+        <div class="form">
+            <input
+            v-model='city' 
+            @keyup.enter='resolu' 
+            class="search animated bounceInLeft" 
+            type="search" 
+            placeholder="Your city name">
+            <input 
+            @click="resolu" 
+            class="button animated bounceInRight" 
+            type="button" 
+            value="点击搜索">
+        </div>
+        <main>
+            <h3>Weather in {{ city }}, <span v-if='city'>{{ countryCode }}</span> </h3>
+            <div class="wrapper">
+                <img class="weather" v-bind:src="tempImgsrc" alt="天气图片">
+                <span class="temp">{{ temperature }}</span>
+            </div>
+            <div class="weather_main">
+                <span>{{ description }}</span>
+            </div>
+            <div class="time">
+                <span class="now">{{ timeNow }}</span>
+                <a class="wrong" href="###"> Wrong data?</a>
+            </div>
+
+            <div class="table">
+                <weather-details v-for="item in weatherTotal" v-bind:data="item"></weather-details>
+            </div>
+        </main>
+        <div class="pro">
+            <ul>
+                <li v-on:click="computtA">Main</li>
+                <li v-on:click="computtB">Hourly</li>
+            </ul>
+            <div class="wrapper animated bounce">
+                <table v-if="proMain">
+                    <tr v-for='item in weatherProMain'>
+                        <td>{{ getYear(item.dt,3) }}</td>
+                        <td>
+                            <img 
+                            v-bind:src=`http://openweathermap.org/img/w/${item.weather[0].icon}.png` alt="天气图片"></td>
+                        <td>
+                            <span class="ightHightHourMainHot">{{ item.temp.max }}°C</span>
+                            <span class="ightHightHourMainCold">{{ item.temp.min }}°C</span>
+                            <i>{{ item.weather[0].description }}</i>
+                            <p>Wind speed:{{ item.speed }}m/s</p>
+                            <p>
+                                Clouds:{{ item.humidity }}% --
+                                Pressure:{{ item.pressure }}hPa
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+                <table v-if="proHourly" v-for="items in weatherProHourly">
+                    <tr>
+                        <th colspan = "3" class="proHourlyDate">{{ getYear(items.hourly[0].dt,4) }}</th>
+                    </tr>
+                    <tr v-for="i in items.hourly">
+                        <td>{{ getTime(i.dt,4) }}</td>
+                        <td>
+                            <img
+                            v-bind:src=`http://openweathermap.org/img/w/${i.weather[0].icon}.png` alt="天气图片">
+                        </td>
+                        <td>
+                            <span class="lightHightHour">{{ i.main.temp }}°C</span>
+                            <i>{{ i.weather[0].description }}</i>
+                            <p>
+                                {{ i.main.temp_min }}°C, 
+                                {{ i.main.temp_max }}°C, 
+                                {{ i.wind.speed }}, 
+                                {{ i.main.humidity }}%, 
+                                {{ i.main.pressure }}hPa
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!--<script src="scripts/jquery.js"></script>-->
+    <script src="http://cdn.bootcss.com/axios/0.15.3/axios.min.js"></script>
+    <script src='http://cdn.bootcss.com/vue/2.1.10/vue.min.js'></script>
+    <script src="scripts/script.js"></script>
+</body>
+
+</html>
